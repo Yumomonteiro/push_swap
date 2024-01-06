@@ -6,20 +6,17 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:13:07 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/06 14:35:22 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:23:12 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// CREATE STACKS AND INPLEMENT SWAP, ROTATE, REVERSE ROTATE, PUSH
-//
 
 #include <stdlib.h>
 #include <stdio.h>
 
 typedef struct push_swap
 {
-	void *next;
-	void *prev;
+	struct push_swap *next;
+	struct push_swap *prev;
 	int data;
 } push_list;
 
@@ -91,7 +88,7 @@ void printList(push_list *lst)
 	printf("NULL\n");
 }
 
-void swap_top_stackA(push_list **lst)
+void swap_stackA(push_list **lst)
 {
 	if(*lst == NULL || (*lst)->next == NULL)
 		return ;
@@ -99,10 +96,10 @@ void swap_top_stackA(push_list **lst)
 	push_list *second = (*lst)->next;
 	first->next = second->next;
 	second->next = first;
-	
 	*lst = second;
+        printf("sa\n");
 }
-void swap_top_stackB(push_list **lst)
+void swap_stackB(push_list **lst)
 {
 	if(*lst == NULL || (*lst)->next == NULL)
 		return ;
@@ -110,11 +107,17 @@ void swap_top_stackB(push_list **lst)
 	push_list *second = (*lst)->next;
 	first->next = second->next;
 	second->next = first;
-	
 	*lst = second;
+        printf("sb\n");
+}
+void swap_both(push_list **stackA, push_list **stackB)
+{
+        swap_stackA(stackA);
+        swap_stackB(stackB);
+        printf("ss\n");
 }
 
-void push_to_stackB(push_list **stackA, push_list **stackB)
+void push_stackB(push_list **stackA, push_list **stackB)
 {
 	if(*stackA == NULL)
 		return;
@@ -125,8 +128,9 @@ void push_to_stackB(push_list **stackA, push_list **stackB)
 
 	topA->next = *stackB;
 	*stackB = topA;
+        printf("pb\n");
 }
-void push_to_stackA(push_list **stackA, push_list **stackB)
+void push_stackA(push_list **stackA, push_list **stackB)
 {
 	if(*stackB == NULL)
 		return;
@@ -137,9 +141,10 @@ void push_to_stackA(push_list **stackA, push_list **stackB)
 
 	topB->next = *stackA;
 	*stackA = topB;
+        printf("pa\n");
 }
 
-void rotate_stack(push_list **stack)
+void rotate_stackA(push_list **stack)
 {
     if (*stack == NULL || (*stack)->next == NULL)
         return; 
@@ -156,9 +161,54 @@ void rotate_stack(push_list **stack)
     *stack = first->next;
     current->next = first;
     first->next = NULL;
+    printf("ra\n");
+}
+void rotate_stackB(push_list **stack)
+{
+    if (*stack == NULL || (*stack)->next == NULL)
+        return; 
+
+    push_list *first = *stack;
+    push_list *current = *stack;
+
+    while (current->next != NULL)
+    {
+        current = current->next;
+    }
+
+    // Faz o shift up
+    *stack = first->next;
+    current->next = first;
+    first->next = NULL;
+    printf("rb\n");
+}
+void rotate_both(push_list **stackA, push_list **stackB)
+{
+        rotate_stackA(stackA);
+        rotate_stackB(stackB);
+        printf("rr\n");
 }
 
-void reverse_rotate_stack(push_list **stack)
+void reverse_rotate_stackA(push_list **stack)
+{
+
+    if (*stack == NULL || (*stack)->next == NULL)
+        return; 
+    push_list *current = *stack;
+    push_list *previous = NULL;
+
+    while (current->next != NULL)
+    {
+        previous = current;
+        current = current->next;
+    }
+
+    current->next = *stack;
+    *stack = current;
+    previous->next = NULL;
+    printf("rra\n");
+}
+void reverse_rotate_stackB(push_list **stack)
 {
 
     if (*stack == NULL || (*stack)->next == NULL)
@@ -176,39 +226,76 @@ void reverse_rotate_stack(push_list **stack)
     current->next = *stack;
     *stack = current;
     previous->next = NULL;
+    printf("rrb\n");
+}
+
+void reverse_rotate_both(push_list **stackA, push_list **stackB)
+{
+        reverse_rotate_stackA(stackA);
+        reverse_rotate_stackB(stackB);
+        printf("rrr\n");
+        
+}
+void args_converter(int argc, char **argv, push_list **stack)
+{
+        int i = 1;
+	while(i < argc)
+	{
+		int num = ft_atoi(argv[i]);
+		ft_lstadd_back(stack, num);
+		i++;
+	}
+}
+void free_list(int i, push_list **stackA);
+
+int	ft_lstsize(push_list *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }
 
 int main(int argc, char **argv)
 {
-	if(argc > 1)
-	{
+	if(argc <= 1)
+        {
+               //funcao para sair do programa e limpar tudo 
+               //tratamento de erros e free da lista  
+        }
 		push_list *stackA = NULL;
 		push_list *stackB = NULL;
-		int i;
-		
-		i = 1;
-		while(i < argc)
-		{
-			int num = ft_atoi(argv[i]);
-			ft_lstadd_back(&stackA, num);
-			i++;
-		}
-		int num2 = 225;
-		int num3 = 100;
-		ft_lstadd_back(&stackB, num2);
-		ft_lstadd_back(&stackB, num3);
-		//reverse_rotate_stack(&stackA);
-		//rotate_stack(&stackA);
+                args_converter(argc, argv, &stackA);
+                if(ft_lstsize(stackA) == 2)
+                        swap_stackA(&stackA);
+               
+                        
+                        
+                //bubble_sort(&stackA);
+		// int num2 = 225;
+		// int num3 = 100;
+		// ft_lstadd_back(&stackB, num2);
+		// ft_lstadd_back(&stackB, num3);
+		//reverse_rotate_stackA(&stackA);
+                //reverse_rotate_stackB(&stackB);
+                //reverse_rotate_both(&stackA, &stackB);
+		//rotate_stackA(&stackA);
+                //rotate_stackB(&stackB);
+                //rotate_both(&stackA, &stackB);
 		//push_to_stackA(&stackA, &stackB);
-		//push_to_stackB(&stackA, &stackB);
+		//push_stackB(&stackA, &stackB);
 		//swap_top_stackA(&stackA);
 		//swap_top_stackB(&stackB);
+                //swap_both(&stackA, &stackB);
 		//print list
 		printf("linked list stackA: ");
 		printList(stackA);
 		printf("\nstackB\n");
 		printList(stackB);
 		return 0;
-		
-	}
 }

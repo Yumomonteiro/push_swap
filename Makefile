@@ -1,13 +1,15 @@
 NAME	= push_swap
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
 
 SRCS	= ./push_swap.c \
 		  ./reverse_rotate.c \
 		  ./rotate.c \
 		  ./swap.c \
 		  ./push.c \
-		  ./utils.c
+		  ./utils.c \
+		  ./small_algo.c \
+
 LIBFT	= libs/libft/libft.a
 FT_PRINTF = libs/ft_printf/libftprintf.a
 OBJS	= $(SRCS:.c=.o)

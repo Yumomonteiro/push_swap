@@ -6,7 +6,7 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:13:07 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/08 19:00:36 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:12:59 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void printList(push_list *lst)
 
 void args_converter(int argc, char **argv, push_list **stack, int i)
 {
-	while(i < argc)
+        while(i < argc)
 	{
 		int num = ft_atoi(argv[i]);
 		ft_lstadd_back(stack, num);
@@ -33,52 +33,110 @@ void args_converter(int argc, char **argv, push_list **stack, int i)
 	}
 }
 
+int    check_dup(push_list *stackA)
+{
+        if (stackA == NULL)
+                return 0;
+        push_list *current = stackA;
+
+        while(current != NULL)
+        {
+                push_list *runner = current->next;
+                while (runner != NULL)
+                {
+                        if (current->data == runner->data)
+                        {
+                                printf("achou duplicados na lista");
+                                return (0);
+                        }
+                        runner = runner->next;
+                }
+                current = current->next;
+        }
+        return (1);
+}
+int is_valid_argument(const char *arg)
+{
+        while (*arg)
+        {
+                if(!ft_isdigit(*arg) && *arg != ' ')
+                        return 0;
+                arg++;
+        }
+        return 1;   
+}
+
+int is_sorted(push_list *stackA)
+{
+        push_list *current;
+        current = stackA;
+        while(current && current->next)
+        {
+                if(current->data > current->next->data)
+                        return 0;
+                current = current->next;
+        }
+        return 1;
+}
+
 void check_args(int argc, char **argv, push_list **stack)
 {
-        if(argc < 2)
-                ft_printf("Numero de argumentos invalido");
-        if(argc == 2)
+    if (argc < 2)
+    {
+        ft_printf("Error(args)\n");
+    }
+    else if (argc == 2)
+    {
+        if (argv[1][0] == '\0' || !is_valid_argument(argv[1]))
         {
-                int i;
-                char **split_result;
-
-                i = 0;
-                split_result = ft_split(argv[1], ' ');
-                if(split_result == NULL)
-                {
-                        ft_printf("Erro ao dividir a string\n");
-                        return ;
-                }
-                args_converter(argc, split_result, stack, 0);
-                free(split_result);
+            ft_printf("Error\n");
+            return;
         }
-        else 
-                args_converter(argc, argv, stack, 1);
+
+        int size = 0;
+        char **split_result;
+
+        split_result = ft_split(argv[1], ' ');
+        if (split_result == NULL)
+        {
+            ft_printf("Erro ao dividir a string\n(split)");
+            return;
+        }
+
+        while (split_result[size])
+            size++;
+        args_converter(size, split_result, stack, 0);
+        free(split_result);
+    }
+    else
+    {
+        args_converter(argc, argv, stack, 1);
+    }
 }
+
 int main(int argc, char **argv)
 {
 		push_list *stackA = NULL;
 		push_list *stackB = NULL;
-                check_args(argc, argv, &stackA);
-		// int num2 = 225;
-		// int num3 = 100;
-		// ft_lstadd_back(&stackB, num2);
-		// ft_lstadd_back(&stackB, num3);
-		//reverse_rotate_stackA(&stackA);
-                //reverse_rotate_stackB(&stackB);
-                //reverse_rotate_both(&stackA, &stackB);
-		//rotate_stackA(&stackA);
-                //rotate_stackB(&stackB);
-                //rotate_both(&stackA, &stackB);
-		//push_to_stackA(&stackA, &stackB);
-		//push_stackB(&stackA, &stackB);
-		//swap_top_stackA(&stackA);
-		//swap_top_stackB(&stackB);
-                //swap_both(&stackA, &stackB);
-		//print list
-		printf("linked list stackA: ");
-		printList(stackA);
-		printf("\nstackB\n");
-		printList(stackB);
+                (check_args(argc, argv, &stackA));
+                if (check_dup(stackA) == 0)
+                        return 0;
+                if(is_sorted(stackA))
+                {
+                        printf("list sorted");
+                        return 0;
+                }
+                printList(stackA);
+                if(ft_lstsize(stackA) == 2)
+                        swap_stackA(&stackA);
+                if(ft_lstsize(stackA) == 3)
+                        algo_three(&stackA);
+                if(ft_lstsize(stackA) == 4)
+                        algo_four(&stackA, &stackB);
+                if(ft_lstsize(stackA) == 5)
+                        algo_five(&stackA, &stackB);
+                printList(stackA);
+                // else if(ft_lstsize(stackA) >= 6)
+                //         big_algo(&stackA);
 		return 0;
 }

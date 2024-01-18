@@ -6,7 +6,7 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:37:26 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/08 17:40:26 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:10:41 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ void	ft_lstadd_back(push_list **lst, int data);
 int	ft_lstsize(push_list *lst);
 char	**ft_split(char const *s, char c);
 int	ft_printf(const char *string, ...);
+int	ft_isdigit(int c);
+void printList(push_list *lst);
+void algo_five(push_list **stack_a, push_list **stack_b);
+void algo_three(push_list **stack);
+void algo_four(push_list **stack_a, push_list **stack_b);
+int is_sorted(push_list *stack);
+
 
 #endif
 

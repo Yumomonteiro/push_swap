@@ -6,23 +6,11 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:51:21 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/18 19:28:23 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:59:21 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void algo_three(push_list **stack)
-{
-        while(!is_sorted(*stack))
-        {
-                if((*stack)->data > (*stack)->next->data)
-                        swap_stackA(stack);
-                else
-                        reverse_rotate_stackA(stack);
-                printList(*stack);
-        }      
-}
 int min_node(push_list **stackA)
 {
         push_list *current;
@@ -36,16 +24,28 @@ int min_node(push_list **stackA)
         }
         return (min_node);
 }
+void algo_three(push_list **stack)
+{
+        while(!is_sorted(*stack))
+        {
+                if((*stack)->data > (*stack)->next->data)
+                        swap_stackA(stack);
+                else
+                        reverse_rotate_stackA(stack);
+                // printList(*stack);
+        }      
+}
+
+
 void algo_four(push_list **stack_a, push_list **stack_b)
 {
         int min_value = min_node(stack_a);
-        printf("%d", min_value);
         while ((*stack_a)->data != min_value)
                 rotate_stackA(stack_a);
         push_stackB(stack_a, stack_b);
-        printList(*stack_a);
+        // printList(*stack_a);
         algo_three(stack_a);
-        printList(*stack_a);
+        // printList(*stack_a);
         push_stackA(stack_a, stack_b);
 }
 
@@ -58,9 +58,3 @@ void algo_five(push_list **stack_a, push_list **stack_b)
         algo_four(stack_a, stack_b);
         push_stackA(stack_a, stack_b);
 }
-
-
-
-
-
-

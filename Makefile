@@ -9,6 +9,7 @@ SRCS	= ./push_swap.c \
 		  ./push.c \
 		  ./utils.c \
 		  ./small_algo.c \
+		  ./sort_stack.c \
 
 LIBFT	= libs/libft/libft.a
 FT_PRINTF = libs/ft_printf/libftprintf.a

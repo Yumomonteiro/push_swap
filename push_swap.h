@@ -6,7 +6,7 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:37:26 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/18 19:10:41 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:54:03 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct push_swap
 {
 	struct push_swap *next;
-	struct push_swap *prev;
+	int              *index;
 	int data;
 } push_list;
 
@@ -38,6 +38,7 @@ int ft_atoi(char *str);
 push_list	*ft_lstnew(int data);
 void	ft_lstadd_back(push_list **lst, int data);
 int	ft_lstsize(push_list *lst);
+push_list	*ft_lstlast(push_list *lst);
 char	**ft_split(char const *s, char c);
 int	ft_printf(const char *string, ...);
 int	ft_isdigit(int c);
@@ -46,8 +47,8 @@ void algo_five(push_list **stack_a, push_list **stack_b);
 void algo_three(push_list **stack);
 void algo_four(push_list **stack_a, push_list **stack_b);
 int is_sorted(push_list *stack);
-
-
+int min_node(push_list **stackA);
+void insertion_sort(push_list **stack_a, push_list **stack_b);
 #endif
 
 

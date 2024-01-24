@@ -6,7 +6,7 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:13:07 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/18 19:12:59 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:53:44 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,19 @@ int is_sorted(push_list *stackA)
         return 1;
 }
 
-void check_args(int argc, char **argv, push_list **stack)
+int check_args(int argc, char **argv, push_list **stack)
 {
     if (argc < 2)
     {
         ft_printf("Error(args)\n");
+        exit(EXIT_FAILURE);
     }
     else if (argc == 2)
     {
         if (argv[1][0] == '\0' || !is_valid_argument(argv[1]))
         {
             ft_printf("Error\n");
-            return;
+            return 0;
         }
 
         int size = 0;
@@ -100,7 +101,7 @@ void check_args(int argc, char **argv, push_list **stack)
         if (split_result == NULL)
         {
             ft_printf("Erro ao dividir a string\n(split)");
-            return;
+            return 0;
         }
 
         while (split_result[size])
@@ -112,31 +113,33 @@ void check_args(int argc, char **argv, push_list **stack)
     {
         args_converter(argc, argv, stack, 1);
     }
+    return 1;
 }
 
 int main(int argc, char **argv)
 {
 		push_list *stackA = NULL;
 		push_list *stackB = NULL;
-                (check_args(argc, argv, &stackA));
-                if (check_dup(stackA) == 0)
+                if(check_args(argc, argv, &stackA) == 0 && check_dup(stackA) == 0)
                         return 0;
                 if(is_sorted(stackA))
                 {
                         printf("list sorted");
                         return 0;
                 }
-                printList(stackA);
-                if(ft_lstsize(stackA) == 2)
+                int size_list = ft_lstsize(stackA);
+                if(size_list == 2)
                         swap_stackA(&stackA);
-                if(ft_lstsize(stackA) == 3)
+                if(size_list == 3)
                         algo_three(&stackA);
-                if(ft_lstsize(stackA) == 4)
+                if(size_list == 4)
                         algo_four(&stackA, &stackB);
-                if(ft_lstsize(stackA) == 5)
+                if(size_list == 5)
                         algo_five(&stackA, &stackB);
-                printList(stackA);
-                // else if(ft_lstsize(stackA) >= 6)
-                //         big_algo(&stackA);
-		return 0;
+                if(size_list >= 6)
+                        insertion_sort(&stackA, &stackB);
+		printList(stackA);
+                // printf("B");
+                // printList(stackB);
+                return 0;
 }

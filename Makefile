@@ -3,13 +3,13 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
 
 SRCS	= ./push_swap.c \
-		  ./reverse_rotate.c \
-		  ./rotate.c \
-		  ./swap.c \
-		  ./push.c \
-		  ./utils.c \
-		  ./small_algo.c \
-		  ./sort_stack.c \
+		  ./srcs/reverse_rotate.c \
+		  ./srcs/rotate.c \
+		  ./srcs/swap.c \
+		  ./srcs/push.c \
+		  ./srcs/utils.c \
+		  ./srcs/small_algo.c \
+		  ./srcs/sort_stack.c \
 
 LIBFT	= libs/libft/libft.a
 FT_PRINTF = libs/ft_printf/libftprintf.a

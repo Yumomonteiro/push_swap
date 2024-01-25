@@ -6,38 +6,45 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:39:51 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/08 12:40:00 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:49:05 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-
-void swap_stackA(push_list **lst)
+void	swap_stacka(t_list **lst)
 {
-	if(*lst == NULL || (*lst)->next == NULL)
+	t_list	*first;
+	t_list	*second;
+
+	if (*lst == NULL || (*lst)->next == NULL)
 		return ;
-	push_list *first = *lst;
-	push_list *second = (*lst)->next;
+	first = *lst;
+	second = (*lst)->next;
 	first->next = second->next;
 	second->next = first;
 	*lst = second;
-        printf("sa\n");
+	ft_printf("sa\n");
 }
-void swap_stackB(push_list **lst)
+
+void	swap_stackb(t_list **lst)
 {
-	if(*lst == NULL || (*lst)->next == NULL)
+	t_list	*first;
+	t_list	*second;
+
+	if (*lst == NULL || (*lst)->next == NULL)
 		return ;
-	push_list *first = *lst;
-	push_list *second = (*lst)->next;
+	first = *lst;
+	second = (*lst)->next;
 	first->next = second->next;
 	second->next = first;
 	*lst = second;
-        printf("sb\n");
+	ft_printf("sb\n");
 }
-void swap_both(push_list **stackA, push_list **stackB)
+
+void	swap_both(t_list **stacka, t_list **stackb)
 {
-        swap_stackA(stackA);
-        swap_stackB(stackB);
-        printf("ss\n");
+	swap_stacka(stacka);
+	swap_stackb(stackb);
+	ft_printf("ss\n");
 }

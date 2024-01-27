@@ -6,7 +6,7 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:36:28 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/25 16:49:05 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:35:19 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	reverse_rotate_stacka(t_list **stack)
 	current->next = *stack;
 	*stack = current;
 	previous->next = NULL;
-	printf("rra\n");
+	ft_printf("rra\n");
 }
 
 void	reverse_rotate_stackb(t_list **stack)
@@ -49,12 +49,12 @@ void	reverse_rotate_stackb(t_list **stack)
 	current->next = *stack;
 	*stack = current;
 	previous->next = NULL;
-	printf("rrb\n");
+	ft_printf("rrb\n");
 }
 
 void	reverse_rotate_both(t_list **stacka, t_list **stackb)
 {
 	reverse_rotate_stacka(stacka);
 	reverse_rotate_stackb(stackb);
-	printf("rrr\n");
+	ft_printf("rrr\n");
 }

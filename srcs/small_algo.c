@@ -6,17 +6,17 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:51:21 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/25 17:12:43 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/27 15:13:33 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	is_sorted(t_list *stackA)
+int	is_sorted(t_list *stacka)
 {
 	t_list	*current;
 
-	current = stackA;
+	current = stacka;
 	while (current && current->next)
 	{
 		if (current->data > current->next->data)
@@ -25,10 +25,11 @@ int	is_sorted(t_list *stackA)
 	}
 	return (1);
 }
+
 int	min_node(t_list **stacka)
 {
 	t_list	*current;
-	int			min_node;
+	int		min_node;
 
 	current = *stacka;
 	min_node = current->data;

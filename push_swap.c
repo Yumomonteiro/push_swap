@@ -6,24 +6,24 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:13:07 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/25 17:24:20 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/27 15:41:20 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	printlist(t_list *lst)
-{
-	t_list	*current;
+// void	printlist(t_list *lst)
+// {
+// 	t_list	*current;
 
-	current = lst;
-	while (current != NULL)
-	{
-		ft_printf("%d -> ", current->data);
-		current = current->next;
-	}
-	printf("NULL\n");
-}
+// 	current = lst;
+// 	while (current != NULL)
+// 	{
+// 		ft_printf("%d -> ", current->data);
+// 		current = current->next;
+// 	}
+// 	printf("NULL\n");
+// }
 
 void	args_converter(int argc, char **argv, t_list **stack, int i)
 {
@@ -96,6 +96,7 @@ void	sort_list(t_list **stack_a, t_list **stack_b)
 	int		size_list;
 
 	size_list = ft_lstsize(*stack_a);
+	ft_give_index(stack_a, size_list);
 	if (size_list == 2)
 		swap_stacka(stack_a);
 	if (size_list == 3)
@@ -105,7 +106,7 @@ void	sort_list(t_list **stack_a, t_list **stack_b)
 	if (size_list == 5)
 		algo_five(stack_a, stack_b);
 	if (size_list >= 6)
-		insertion_sort(stack_a, stack_b);
+		ft_radix_sort(stack_a, stack_b, size_list);
 }
 
 int	main(int argc, char **argv)

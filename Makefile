@@ -1,6 +1,6 @@
 NAME	= push_swap
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 
 SRCS	= ./push_swap.c \
 		  ./srcs/reverse_rotate.c \
@@ -9,7 +9,7 @@ SRCS	= ./push_swap.c \
 		  ./srcs/push.c \
 		  ./srcs/utils.c \
 		  ./srcs/small_algo.c \
-		  ./srcs/sort_stack.c \
+		  ./srcs/big_sort.c \
 
 LIBFT	= libs/libft/libft.a
 FT_PRINTF = libs/ft_printf/libftprintf.a

@@ -6,24 +6,24 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:13:07 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/27 15:41:20 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/27 16:18:56 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	printlist(t_list *lst)
-// {
-// 	t_list	*current;
+void	printlist(t_list *lst)
+{
+	t_list	*current;
 
-// 	current = lst;
-// 	while (current != NULL)
-// 	{
-// 		ft_printf("%d -> ", current->data);
-// 		current = current->next;
-// 	}
-// 	printf("NULL\n");
-// }
+	current = lst;
+	while (current != NULL)
+	{
+		ft_printf("%d -> ", current->data);
+		current = current->next;
+	}
+	printf("NULL\n");
+}
 
 void	args_converter(int argc, char **argv, t_list **stack, int i)
 {
@@ -126,12 +126,11 @@ int	main(int argc, char **argv)
 	}
 	if (is_sorted(stack_a))
 	{
-		printf("Error\n");
 		free_stack(&stack_a);
 		return (0);
 	}
 	sort_list(&stack_a, &stack_b);
-	printlist(stack_a);
+        // printlist(stack_a);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

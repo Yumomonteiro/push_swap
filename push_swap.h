@@ -6,7 +6,7 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:25:47 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/27 15:38:29 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/27 16:07:29 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
-# include "libs/libft/libft.h"
-# include "libs/ft_printf/ft_printf.h"
 
 typedef struct push_swap
 {
@@ -45,7 +43,7 @@ int		ft_atoi(char *str);
 char	**ft_split(char const *s, char c);
 int		ft_printf(const char *string, ...);
 int		ft_isdigit(int c);
-// void	printlist(t_list *lst);
+void	printlist(t_list *lst);
 int		is_sorted(t_list *stack);
 int		min_node(t_list **stackA);
 void	ft_give_index(t_list **stack, int size);

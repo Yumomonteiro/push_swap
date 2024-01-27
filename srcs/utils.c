@@ -6,7 +6,7 @@
 /*   By: yude-oli <yude-oli@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 14:43:43 by yude-oli          #+#    #+#             */
-/*   Updated: 2024/01/27 15:12:29 by yude-oli         ###   ########.fr       */
+/*   Updated: 2024/01/27 16:15:29 by yude-oli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_lstadd_back(t_list **lst, int data)
 	t_list	*last;
 
 	new = ft_lstnew(data);
-	if (!data)
-		return ;
+	// if (!data)
+	// 	return ;
 	if (!*lst)
 	{
 		*lst = new;
